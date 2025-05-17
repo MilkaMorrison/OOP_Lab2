@@ -99,17 +99,9 @@ async Task AsyncTask()
             "https://randomfox.ca/floof/"
         };
 
-    var tasks = new Task<string>[urls.Length];
-
-    for (int i = 0; i < urls.Length; i++)
+    foreach (var url in urls)
     {
-        tasks[i] = asyncTask(urls[i]);
-    }
-
-    var responses = await Task.WhenAll(tasks);
-
-    foreach (var response in responses)
-    {
+        var response = await asyncTask(url);
         if (response != null)
         {
             Console.WriteLine(response);
